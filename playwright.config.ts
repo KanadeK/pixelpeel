@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 
 const host = '127.0.0.1'
-const port = 5173
+const port = Number(process.env.PIXELPEEL_E2E_PORT ?? 5273)
 
 export default defineConfig({
   testDir: './e2e',
@@ -29,9 +29,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run dev -- --host 127.0.0.1',
+    command: `npm run dev -- --host ${host} --port ${port} --strictPort`,
     url: `http://${host}:${port}/pixelpeel/`,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 })

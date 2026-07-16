@@ -79,31 +79,43 @@ if (!response || response.status() !== 200) {
 }
 
 await page.reload({ waitUntil: 'networkidle' })
-await page.getByRole('heading', { name: 'PixelPeel' }).waitFor()
+if (!/PixelPeel/i.test(await page.title())) {
+  throw new Error(`Unexpected page title: ${await page.title()}`)
+}
+
+await page.getByRole('button', { name: 'Load example' }).waitFor()
 await page.getByRole('button', { name: 'Load example' }).click()
 await page.getByText('Changed pixels').waitFor()
 
-await page.getByRole('button', { name: 'Overlay' }).click()
-await page.getByRole('slider').fill('73')
-await page.getByRole('button', { name: 'Blink' }).click()
-await page.getByRole('button', { name: 'Start blinking' }).click()
-await page.getByRole('button', { name: 'Stop blinking' }).click()
-await page.getByRole('button', { name: 'Diff' }).click()
+await page.getByRole('button', { name: 'Overlay', exact: true }).click()
+await page.getByLabel('After opacity').fill('73')
+await page.getByRole('button', { name: 'Blink', exact: true }).click()
 
-await verifyDownload(
-  'Export diff PNG',
-  /^pixelpeel-diff-\d{4}-\d{2}-\d{2}\.png$/,
-)
-await verifyDownload(
-  'Export report',
-  /^pixelpeel-report-\d{4}-\d{2}-\d{2}\.md$/,
-)
+const blinkToggle = page.getByRole('button', {
+  name: /^(Start|Pause) blinking$/,
+})
+const initialBlinkLabel =
+  (await blinkToggle.getAttribute('aria-label')) ??
+  (await blinkToggle.innerText())
 
-await page.getByRole('button', { name: 'Copy summary' }).click()
+await blinkToggle.click()
+
+if (/^Start blinking$/i.test(initialBlinkLabel.trim())) {
+  await page.getByRole('button', { name: 'Pause blinking' }).click()
+} else {
+  await page.getByRole('button', { name: 'Start blinking' }).click()
+}
+
+await page.getByRole('button', { name: 'Diff', exact: true }).click()
+
+await verifyDownload('Export diff PNG', /^pixelpeel-diff-\d{8}-\d{6}\.png$/)
+await verifyDownload('Export PR report', /^pixelpeel-report-\d{8}-\d{6}\.png$/)
+
+await page.getByRole('button', { name: 'Copy PR summary' }).click()
 const clipboardText = await page.evaluate(() => navigator.clipboard.readText())
 
-if (!clipboardText.includes('PixelPeel visual diff')) {
-  throw new Error('Copied summary did not contain the expected heading')
+if (!clipboardText.includes('Visual comparison generated with PixelPeel.')) {
+  throw new Error('Copied summary did not contain the expected attribution')
 }
 
 assertEmpty('Console errors', consoleErrors)
