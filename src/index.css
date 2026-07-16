@@ -1,0 +1,140 @@
+:root {
+  font-family:
+    Aptos,
+    'Segoe UI Variable',
+    'Segoe UI',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #edf4f8;
+  background: #0b1018;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --font-mono: 'Cascadia Code', 'SFMono-Regular', Consolas, monospace;
+  --page: #0b1018;
+  --page-raised: #0f1621;
+  --surface: #121b27;
+  --surface-raised: #172231;
+  --surface-hover: #1c2939;
+  --border: #263547;
+  --border-strong: #3c5067;
+  --text: #edf4f8;
+  --text-soft: #bac7d4;
+  --text-muted: #8293a6;
+  --accent: #39c6c0;
+  --accent-strong: #67dcd6;
+  --accent-ink: #061b1b;
+  --accent-soft: rgb(57 198 192 / 13%);
+  --diff: #ff3f8e;
+  --diff-soft: rgb(255 63 142 / 12%);
+  --danger: #ff7d83;
+  --focus: #74e8e1;
+  --shadow: 0 18px 60px rgb(2 7 13 / 36%);
+}
+
+:root[data-theme='light'] {
+  color: #132230;
+  background: #eef3f7;
+  --page: #eef3f7;
+  --page-raised: #f7fafc;
+  --surface: #ffffff;
+  --surface-raised: #f5f8fa;
+  --surface-hover: #e9f0f4;
+  --border: #cbd7df;
+  --border-strong: #91a5b3;
+  --text: #132230;
+  --text-soft: #405365;
+  --text-muted: #667b8c;
+  --accent: #087f7d;
+  --accent-strong: #056a68;
+  --accent-ink: #f4ffff;
+  --accent-soft: rgb(8 127 125 / 11%);
+  --diff: #ce1760;
+  --diff-soft: rgb(206 23 96 / 10%);
+  --danger: #b9232e;
+  --focus: #087f7d;
+  --shadow: 0 18px 60px rgb(51 72 88 / 16%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--page);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100dvh;
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+}
+
+body,
+button,
+input {
+  font: inherit;
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a {
+  color: inherit;
+}
+
+button {
+  border: 0;
+}
+
+button:not(:disabled),
+a,
+input[type='range'] {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: var(--accent-ink);
+  background: var(--accent-strong);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

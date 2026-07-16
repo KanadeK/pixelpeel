@@ -1,0 +1,75 @@
+name: Bug report
+description: Report a reproducible problem in PixelPeel
+title: '[Bug]: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve PixelPeel. Search existing issues first and do not attach confidential screenshots; issue attachments are public.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and did not find a duplicate.
+          required: true
+        - label: I reproduced this with the latest version of PixelPeel.
+          required: true
+        - label: I removed private or confidential information from all files and screenshots.
+          required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+      placeholder: A concise description of the observed and expected behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Import ...
+        3. Select ...
+        4. Observe ...
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Edge
+        - Firefox
+        - Safari
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser-version
+    attributes:
+      label: Browser version
+      placeholder: For example, 140.0
+    validations:
+      required: true
+  - type: input
+    id: operating-system
+    attributes:
+      label: Operating system
+      placeholder: For example, Windows 11, macOS 15, or Ubuntu 24.04
+    validations:
+      required: true
+  - type: textarea
+    id: image-details
+    attributes:
+      label: Image details
+      description: Share formats, dimensions, transparency, and whether dimensions differ. Do not upload the original files if they are sensitive.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console output or additional context
+      description: Paste relevant text only. Remove tokens, paths, private data, and unrelated output.
+      render: shell

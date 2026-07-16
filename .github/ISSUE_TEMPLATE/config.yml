@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/KanadeK/pixelpeel/security/advisories/new
+    about: Use GitHub's private vulnerability reporting flow for sensitive security reports.
+  - name: PixelPeel live demo
+    url: https://kanadek.github.io/pixelpeel/
+    about: Use the project Pages URL after its first deployment; local development remains available before then.

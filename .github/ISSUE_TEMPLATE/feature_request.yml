@@ -1,0 +1,47 @@
+name: Feature request
+description: Propose a focused improvement to PixelPeel
+title: '[Feature]: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        PixelPeel is intentionally a local-first, browser-only visual diff tool. Explain the user need before proposing an implementation.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and did not find this request.
+          required: true
+        - label: This request can preserve local-only image processing and does not require tracking.
+          required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What workflow is difficult today, and who is affected?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the smallest useful behavior, including accessibility and narrow-screen needs.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe workarounds or simpler options you tried.
+  - type: checkboxes
+    id: implications
+    attributes:
+      label: Impact areas
+      options:
+        - label: Image processing or memory use
+        - label: Privacy or browser storage
+        - label: Accessibility or reduced motion
+        - label: English and Simplified Chinese copy
+        - label: GitHub Pages or offline/static behavior
+        - label: Exported image or Markdown output

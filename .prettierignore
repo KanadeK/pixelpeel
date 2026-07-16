@@ -1,0 +1,9 @@
+dist
+node_modules
+playwright-report
+test-results
+coverage
+package-lock.json
+docs/screenshot.png
+public/social-preview.png
+public/examples/*.png
